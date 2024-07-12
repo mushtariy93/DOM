@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            color: green;
+            display: flex;
+            justify-content: center;
+        }
+
+        #mybutton {
+            display: block;
+            margin: 0 auto;
+        }
+
+        #postid {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Ma`lumot kiriting
+    </h1>
+    <div id="innerdiv"></div>
+    <input type="text" id="postid" /> <br /><br />
+    <button onclick="mybutton()" id="mybutton">Ma`lumotlar kiritish</button>
+    <script>
+        function mybutton() {
+            const userInput = document.getElementById("postid").value;
+            if (userInput) {
+                const para = document.createElement("div");
+                para.style.display = "flex";
+                para.style.alignItems = "center";
+                para.style.margin = "10px 0";
+
+                const span = document.createElement("span");
+                span.innerText = userInput;
+                span.style.marginRight = "10px";
+
+                const deleteButton = document.createElement("button");
+                deleteButton.innerText = "Delete";
+                deleteButton.onclick = function() {
+                    para.remove();
+                };
+
+                para.appendChild(span);
+                para.appendChild(deleteButton);
+                document.getElementById("innerdiv").appendChild(para);
+
+                document.getElementById("postid").value = ""; // Clear the input field
+            } else {
+                alert("Please enter some text!");
+            }
+        }
+    </script>
+</body>
+</html>
